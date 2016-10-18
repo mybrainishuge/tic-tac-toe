@@ -1,25 +1,15 @@
 /* jshint esversion: 6 */
 
-const boardBuilder = () => {
-  return Array(3).fill(['_','_','_']);
-};
-
 class Game {
   constructor() {
-    this.board = boardBuilder();
+    this.board = _buildBoard();
     this.players = ['X', 'O'];
     this.expectedPlayer = _coinToss();
-    this._positionMap = {
-      1: this.board[0][0],
-      2: this.board[0][1],
-      3: this.board[0][2],
-      4: this.board[1][0],
-      5: this.board[1][1],
-      6: this.board[1][2],
-      7: this.board[2][0],
-      8: this.board[2][1],
-      9: this.board[2][2]
-    };
+    this.numberOfPlays = 0;
+  }
+
+  _buildBoard() {
+    return Array(3).fill(['_','_','_']);
   }
 
   _coinToss() {
@@ -27,29 +17,47 @@ class Game {
     return this.players[rando];
   }
 
-  reset() {
-    this.board = boardBuilder();
-    this.expectedPlayer = _coinToss();
+  _nextPlayer() {
+    return this.expectedPlayer === 'X' ? 'O' : 'X';
   }
 
-  play(player, position) {
+  reset() {
+    this.board = _buildBoard();
+    this.expectedPlayer = _coinToss();
+    this.numberOfPlays = 0;
+  }
+
+  play(player, row, column) {
     if (player === this.expectedPlayer) {
-      if (_conflictAt(position)) {
+      if ( _conflictAt(row, column) ) {
         console.log('Sorry, that seat it taken.');
       } else {
-        // place player at position
+        this.board[row][column] = player;
+        _checkForWinner();
+        this.numberOfPlays++;
+        if (this.numberOfPlays === 9) {
+          console.log(`It's a draw! Want to start a new game?`);
+        }
       }
     } else {
       console.log(`Expected first argument to be player ${this.expectedPlayer}. Try again.`);
     }
   }
 
-  _conflictAt(position) {
-    return !(this._positionMap[position] === '_');
+  _conflictAt(row, column) {
+    return !(this.board[row][column] === '_');
   }
 
   _checkForWinner() {
+    let win = false;
+    let winner;
+    // iterate over board
+    //
 
+    if (win) {
+      console.log(`${winner} won! Want to start a new game?`);
+    }
+    this.expectedPlayer = _nextPlayer();
   }
 
 }
