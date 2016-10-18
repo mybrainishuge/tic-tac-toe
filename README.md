@@ -1,6 +1,6 @@
-# Tic Tac Toe CLI
+# Tic Tac Toe
 
-##### You konw the game. Play it from the the command line.
+##### You know the game.
 #
 
 ### Problem: ###
