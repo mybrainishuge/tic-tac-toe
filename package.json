@@ -11,7 +11,5 @@
   },
   "author": "Richard May <mybrainishuge@users.noreply.github.com>",
   "license": "MIT",
-  "dependencies": {
-    "commander": "^2.9.0"
-  }
+  "dependencies": {}
 }

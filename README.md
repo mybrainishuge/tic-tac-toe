@@ -14,4 +14,4 @@
 2. Think about another
 3. Do the other thing
 4. Have someone else take over the first thing
-5. Win
+5. Mumble about it
